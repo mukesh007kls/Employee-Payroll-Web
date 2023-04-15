@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', (event) =>{
         output.textContent = salary.value; 
     });
     
-});
+})
     
     
 const save = () => {
@@ -85,4 +85,32 @@ function getSelectedValues(propertyValue) {
             selectedItems.push(item.value);
     });
     return selectedItems;
+}
+
+const resetForm = () => {
+    setValue('#name','');
+    unSetSelectedVlaues('[name=profile]');
+    unSetSelectedVlaues('[name=gender]');
+    unSetSelectedVlaues('[name=department]');
+    setValue('#salary','');
+    setValue('#notes','');
+    setValue('#day','1');
+    setValue('#month','1');
+    setValue('#year','2020');
+}
+
+const setValue=(id,value)=>{
+    const element=document.querySelectorAll(id);
+    element.value=value;
+}
+const setTextValue = (id,value) => {
+    const element = document.querySelector(id);
+    element.textContent = value;
+}
+
+const unsetSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        item.checked = false;
+    });
 }

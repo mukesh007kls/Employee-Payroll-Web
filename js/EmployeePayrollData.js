@@ -1,34 +1,106 @@
-class EmployeePayrollData {
-    get name() { return this._name; }
-    set name(name) {
-        this._name = name;
-    }
-    get profilePic() { return this._profilePic; }
-    set profilePic(profilePic) { this._profilePic = profilePic; }
+class EmployeePayRollData{
 
-    get salary() { return this._salary; }
-    set salary(salary) {
-        this._salary = salary;
+    get id()
+    {
+        return this._id;
     }
-    get gender() { return this._gender; }
-    set gender(gender) {
+
+    set id(id)
+    {
+        let idRegex = RegExp('[1-9]{1}[0-9]*');
+        if(idRegex.test(id))
+        this._id = id;
+        else
+        throw 'Id is incorrect';
+    }
+
+    get name()
+    {
+        return this._name;
+    }
+
+    set name(name)
+    {
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
+        if(nameRegex.test(name))
+        this._name = name;
+        else 
+        throw 'Name is incorrect';
+    }
+
+    get profilePic()
+    {
+        return this._profilePic;
+    }
+
+    set profilePic(profilePic)
+    {
+        this._profilePic = profilePic;
+    }
+
+    get gender()
+    {
+        return this._gender;
+    }
+
+    set gender(gender)
+    {
         this._gender = gender;
     }
-    get department() { return this._department; }
-    set department(department) { this._department = department; }
 
-    get startDate() { return this._startDate; }
-    set startDate(startDate) {
+    get department()
+    {
+        return this._department;
+    }
+
+    set department(department)
+    {
+        this._department = department;
+    }
+
+    get salary()
+    {
+        return this._salary;
+    }
+
+    set salary(salary)
+    {
+        this._salary = salary;
+    }
+
+    get note()
+    {
+        return this._note;
+    }
+
+    set note(note)
+    {
+        this._note = note;
+    }
+
+    get startDate()
+    {
+        return this._startDate;
+    }
+
+    set startDate(startDate)
+    {
+        let datee = new Date();
+        if(startDate<=datee)
+        {
         this._startDate = startDate;
+        }
+        else
+        throw 'StratDate is incorrect';
     }
 
-    get notes() { return this._notes; }
-    set notes(notes) {
-        this._notes = notes;
+    toString()
+    {
+        const format = {year:'numeric', month:'numeric', day:'numeric'};
+        const date = this.startDate === undefined ? "undefined" :
+                     this.startDate.toLocaleDateString("en-GB",format);
+        return "Id = "+this.id+", Name = "+this.name+", Gender = "+this.gender+", ProfilePic = "+this.profilePic+", Department = "+this.department+", Salary = "+this.salary+
+                ", StartDate = "+date+", Note = "+this.note;
     }
 
-    toString() {
-        const empDate = this._startDate.toLocaleString().split(',')[0];
-        return "name = " + this.name + ", profilePic = " + this.profilePic + ", salary = " + this.salary + ", gender = " + this.gender + ", department = " + this.department + ", startDate = " + empDate + ", notes= " + this.notes;
-    }
 }

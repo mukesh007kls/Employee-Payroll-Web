@@ -1,19 +1,28 @@
-class EmployeePayRollData{
-
+// const EmployeePayrollData = require("./EmployeePayrollData.js");
+// import EmployeePayrollData from "./EmployeePayrollData.js";
+class EmployeePayrollData {
     get id()
     {
         return this._id;
     }
-
     set id(id)
     {
-        let idRegex = RegExp('[1-9]{1}[0-9]*');
+        let idRegex = RegExp('[1-9]*');
         if(idRegex.test(id))
-        this._id = id;
+            this._id = id;
         else
-        throw 'Id is incorrect';
+            throw 'Id is incorrect';
     }
 
+    // constructor(...params) {
+    //     this.name = params[0];
+    //     this.profilePic=params[1];
+    //     this.salary= params[2];
+    //     this.gender=params[3];
+    //     this.department=params[4];
+    //     this.startDate=params[5];
+    //     this.note=params[6];
+    // }
     get name()
     {
         return this._name;
@@ -21,11 +30,14 @@ class EmployeePayRollData{
 
     set name(name)
     {
-        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
-        if(nameRegex.test(name))
-        this._name = name;
-        else 
-        throw 'Name is incorrect';
+        let nameRegex = RegExp('^[A-Z][a-zA-Z]{2,}$');
+        if(nameRegex.test(name)){
+            this._name = name;
+        }
+        else {
+            throw 'Name is incorrect';
+        }
+
     }
 
     get profilePic()
@@ -85,22 +97,22 @@ class EmployeePayRollData{
 
     set startDate(startDate)
     {
-        let datee = new Date();
-        if(startDate<=datee)
+        let date = new Date();
+        if(startDate<=date)
         {
-        this._startDate = startDate;
+            this._startDate = startDate;
         }
         else
-        throw 'StratDate is incorrect';
+            throw 'StartDate is incorrect';
     }
 
     toString()
     {
         const format = {year:'numeric', month:'numeric', day:'numeric'};
-        const date = this.startDate === undefined ? "undefined" :
-                     this.startDate.toLocaleDateString("en-GB",format);
-        return "Id = "+this.id+", Name = "+this.name+", Gender = "+this.gender+", ProfilePic = "+this.profilePic+", Department = "+this.department+", Salary = "+this.salary+
-                ", StartDate = "+date+", Note = "+this.note;
+        const date = !this.startDate ? "undefined" :
+            this.startDate.toLocaleDateString("en-US",format);
+        return " Name = "+this.name+", Gender = "+this.gender+", ProfilePic = "+this.profilePic+", Department = "+this.department+", Salary = "+this.salary+
+            ", StartDate = "+date+", Note = "+this.note;
     }
 
 }
